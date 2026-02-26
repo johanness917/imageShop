@@ -40,6 +40,7 @@
 				</tr>
 				<tr>
 					<td></td>
+<<<<<<< HEAD
 					<td><input type="checkbox" name="remember-me"> <spring:message
 							code="auth.rememberMe" /></td>
 				</tr>
@@ -49,11 +50,28 @@
 							<spring:message code="action.login" />
 						</button>
 					</td>
+=======
+					<td><input type="checkbox" name="remember-me">
+					<spring:message code="auth.rememberMe" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+					<button>
+					  <spring:message code="action.login" />
+					</button></td>
+>>>>>>> master
 				</tr>
 			</table>
 			<sec:csrfInput />
 		</form>
+<<<<<<< HEAD
 
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+=======
+	</div>
+
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+>>>>>>> master
 </body>
 </html>

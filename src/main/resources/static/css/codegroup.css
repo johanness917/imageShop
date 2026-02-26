@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
 table td {
+<<<<<<< HEAD
 	background-color: beige;
+=======
+	background-color: orange;
+>>>>>>> master
 	text-align: center;
 }

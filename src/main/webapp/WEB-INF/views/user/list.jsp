@@ -45,6 +45,7 @@
 					<c:forEach items="${list}" var="member">
 						<tr>
 							<td align="center">${member.userNo}</td>
+<<<<<<< HEAD
 							<td align="center"><a
 								href='/user/read?userNo=${member.userNo}'>${member.userId}</a></td>
 							<td align="left">${member.userPw}</td>
@@ -52,6 +53,13 @@
 							<td align="right">${member.job}</td>
 							<td align="center"><fmt:formatDate
 									pattern="yyyy-MM-dd HH:mm" value="${member.regDate}" /></td>
+=======
+							<td align="center"><a href='/user/read?userNo=${member.userNo}'>${member.userId}</a></td>
+							<td align="left">${member.userPw}</td>
+							<td align="right">${member.userName}</td>
+							<td align="right">${member.job}</td>
+							<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${member.regDate}" /></td>
+>>>>>>> master
 						</tr>
 					</c:forEach>
 				</c:otherwise>

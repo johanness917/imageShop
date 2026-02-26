@@ -21,7 +21,11 @@
 			<spring:message code="codegroup.header.read" />
 		</h2>
 		<form:form modelAttribute="codeDetail">
+<<<<<<< HEAD
 			<form:hidden path="groupCode" />
+=======
+			<form:hidden path="groupCode"/>  
+>>>>>>> master
 			<table>
 				<tr>
 					<td><spring:message code="codedetail.groupCode" /></td>

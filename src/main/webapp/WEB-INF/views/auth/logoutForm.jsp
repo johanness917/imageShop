@@ -23,19 +23,34 @@
 			<spring:message code="auth.header.logout" />
 		</h2>
 		
+<<<<<<< HEAD
 		<form method="post" action="/auth/login">
+=======
+		<form method="post" action="/auth/logout">
+>>>>>>> master
 			<table>
 				<tr>
 					<td align="center">
 						<button>
+<<<<<<< HEAD
 							<spring:message code="action.logout" />
+=======
+						  <spring:message code="action.logout" />
+>>>>>>> master
 						</button>
 					</td>
 				</tr>
 			</table>
 			<sec:csrfInput />
 		</form>
+<<<<<<< HEAD
 
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+=======
+	</div>
+
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+>>>>>>> master
 </body>
 </html>

@@ -2,8 +2,13 @@ package com.project.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+=======
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+>>>>>>> master
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,4 +35,8 @@ public class LoginController {
 		log.info("logoutForm");
 		return "auth/logoutForm";
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

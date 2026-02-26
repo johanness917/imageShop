@@ -48,7 +48,12 @@
 							<td align="center">${codeDetail.codeValue}</td>
 							<td align="left"><a
 								href="/codedetail/read?groupCode=${codeDetail.groupCode}&codeValue=${codeDetail.codeValue}">
+<<<<<<< HEAD
 									${codeDetail.codeName}</a></td>
+=======
+								${codeDetail.codeName}</a>
+							</td>
+>>>>>>> master
 							<td align="center">${codeDetail.sortSeq}</td>
 							<td align="center"><fmt:formatDate
 									pattern="yyyy-MM-dd HH:mm" value="${codeDetail.regDate}" /></td>

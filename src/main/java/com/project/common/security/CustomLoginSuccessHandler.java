@@ -55,4 +55,8 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 		// 세션에서 인증 예외 속성을 제거한다.
 		session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

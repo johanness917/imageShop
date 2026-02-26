@@ -1,7 +1,10 @@
 package com.project.config;
 
 import javax.sql.DataSource;
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +20,17 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+<<<<<<< HEAD
 
 import com.project.common.security.CustomAccessDeniedHandler;
 import com.project.common.security.CustomLoginSuccessHandler;
 import com.project.common.security.CustomUserDetailsService;
 
+=======
+import com.project.common.security.CustomAccessDeniedHandler;
+import com.project.common.security.CustomLoginSuccessHandler;
+import com.project.common.security.CustomUserDetailsService;
+>>>>>>> master
 import jakarta.servlet.DispatcherType;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,15 +55,26 @@ public class SecurityConfig {
 		
 		httpSecurity.authorizeHttpRequests(auth -> auth.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 				.requestMatchers("/accessError", "/login", "/logout", "/css/**", "/js/**", "/error").permitAll()
+<<<<<<< HEAD
 				// .requestMatchers("/board/**").authenticated() // 게시판: 인증(로그인)
 				// .requestMatchers("/manager/**").hasRole("MANAGER") // 메니저기능: 인가(MANAGER)
 				// .requestMatchers("/admin/**").hasRole("ADMIN") // 메니저기능: 인가(MANAGER)
+=======
+				//.requestMatchers("/board/**").authenticated() // 게시판: 인증(로그인)
+				//.requestMatchers("/manager/**").hasRole("MANAGER") // 메니저기능: 인가(MANAGER)
+				//.requestMatchers("/admin/**").hasRole("ADMIN") // 메니저기능: 인가(MANAGER)
+>>>>>>> master
 				// .requestMatchers("/board/register").hasRole("MEMBER") // 게시판 등록: 회원만
 				// .requestMatchers("/notice/list").permitAll() // 공지사항 목록: 누구나
 				// .requestMatchers("/notice/register").hasRole("ADMIN") // 공지사항 등록: 관리자만
 				.anyRequest().permitAll() // 그 외 모든 요청은 인증, 인가가 필요없다.
 		);
+<<<<<<< HEAD
 
+=======
+	   
+		
+>>>>>>> master
 		// 3.접근거부시 예외처리 설정 (/accessError 페이지로 이동)
 		// httpSecurity.exceptionHandling(exception ->
 		// exception.accessDeniedPage("/accessError"));
@@ -71,6 +91,7 @@ public class SecurityConfig {
 
 		// 5.로그아웃처리
 		// 5. 로그아웃 설정 수정
+<<<<<<< HEAD
 		 httpSecurity.logout(logout -> logout .logoutUrl("/auth/logout") // 로그아웃을 처리할 URL
 		 .logoutSuccessUrl("/auth/login") // 로그아웃 성공 시 이동할 페이지
 		 .invalidateHttpSession(true) // HTTP 세션 무효화 (기본값: true)
@@ -81,6 +102,18 @@ public class SecurityConfig {
 		// 데이터 소스를 지정하고 테이블을 이용해서 기존 로그인 정보를 기록
 		// 쿠키의 유효 시간을 지정한다(24시간).
 		// 6. 자동 로그인(Remember-Me) 설정 수정
+=======
+		
+		 httpSecurity.logout(logout -> logout.logoutUrl("/auth/logout") // 로그아웃을 처리할 URL
+		 .logoutSuccessUrl("/auth/login") // 로그아웃 성공 시 이동할 페이지
+		 .invalidateHttpSession(true)     // HTTP 세션 무효화 (기본값: true)
+		 .deleteCookies("JSESSIONID","remember-me") // 로그아웃 시 관련 쿠키 삭제 
+		 .permitAll());		 // 로그아웃 요청은 누구나 접근 가능해야 함 
+		 
+		// 6.자동로그인기능 (Remember-Me) 설정 수정
+		// 데이터 소스를 지정하고 테이블을 이용해서 기존 로그인 정보를 기록
+		// 쿠키의 유효 시간을 지정한다(24시간).
+>>>>>>> master
 		httpSecurity.rememberMe(remember -> remember.key("zeus") // 인증 토큰 생성 시 사용할 키
 				.tokenRepository(createJDBCRepository()) // DB를 이용한 토큰 저장소 설정
 				.tokenValiditySeconds(60 * 60 * 24)); // 토큰 유효 기간 (초 단위: 여기서는 24시간) );
@@ -99,21 +132,33 @@ public class SecurityConfig {
 		return repo;
 	}
 
+<<<<<<< HEAD
 	// @Autowired
+=======
+	//@Autowired
+>>>>>>> master
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(createUserDetailsService()).passwordEncoder(createPasswordEncoder());
 	}
 
 	// 스프링 시큐리티의 UserDetailsService를 구현한 클래스를 빈으로 등록한다.
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 	@Bean
 	public UserDetailsService createUserDetailsService() {
 		return new CustomUserDetailsService();
 	}
 
+<<<<<<< HEAD
 	/*
 	 * // 사용자가 정의한 비번 암호화 처리기를 빈으로 등록한다.
 	 * 
+=======
+	// 사용자가 정의한 비번 암호화 처리기를 빈으로 등록한다.
+	/*
+>>>>>>> master
 	 * @Bean public PasswordEncoder createPasswordEncoder() { return new
 	 * CustomNoOpPasswordEncoder(); }
 	 * 

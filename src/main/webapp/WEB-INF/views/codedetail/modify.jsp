@@ -21,8 +21,13 @@
 			<spring:message code="codegroup.header.read" />
 		</h2>
 		<form:form modelAttribute="codeDetail">
+<<<<<<< HEAD
 			<form:hidden path="groupCode" />
 			<form:hidden path="codeValue" />
+=======
+			<form:hidden path="groupCode"/>
+			<form:hidden path="codeValue"/>
+>>>>>>> master
 			<table>
 				<tr>
 					<td><spring:message code="codedetail.groupCode" /></td>
@@ -32,8 +37,12 @@
 				</tr>
 				<tr>
 					<td><spring:message code="codedetail.codeValue" /></td>
+<<<<<<< HEAD
 					<td><form:input path="codeValue" readonly="true"
 							disabled="true" /></td>
+=======
+					<td><form:input path="codeValue" readonly="true" disabled="true" /></td>
+>>>>>>> master
 					<td><font color="red"><form:errors path="codeValue" /></font></td>
 				</tr>
 				<tr>

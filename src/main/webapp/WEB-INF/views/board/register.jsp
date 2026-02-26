@@ -68,7 +68,11 @@
 			});
 
 			$("#btnList").on("click", function() {
+<<<<<<< HEAD
 				self.location = "/board/list";
+=======
+				self.location = "/board/list?page=1&sizePerPage=10";
+>>>>>>> master
 			});
 
 		});

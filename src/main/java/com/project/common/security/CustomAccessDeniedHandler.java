@@ -16,6 +16,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
+<<<<<<< HEAD
 		// 접근이 금지된 페이지를 요청하는 회원의 정보를 저장한다.
 		log.info("Access Denied Handler");
 		log.info("Access Denied Handler request" + request);
@@ -25,3 +26,14 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		response.sendRedirect("/error/accessError");
 	}
 }
+=======
+		//접근이 금지된 페이지를 요청하는 회원의 정보를 저장한다. 
+		log.info("Access Denied Handler");
+		log.info("Access Denied Handler request"+ request);
+		log.info("Access Denied Handler response"+ response);
+		log.info("Access Denied Handler response"+ accessDeniedException);
+		
+		response.sendRedirect("/error/accessError");
+	}
+}
+>>>>>>> master

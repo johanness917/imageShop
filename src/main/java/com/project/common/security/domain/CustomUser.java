@@ -28,4 +28,8 @@ public class CustomUser extends User{
 	public Member getMember() {
 		return member;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

@@ -88,6 +88,10 @@ public class MemberController {
 		// 직업코드 목록을 조회하여 뷰에 전달
 		String groupCode = "A00";
 		List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 		model.addAttribute("jobList", jobList);
 		model.addAttribute(service.read(member));
 	}
@@ -117,7 +121,11 @@ public class MemberController {
 
 	// 삭제 처리
 	@PostMapping("/remove")
+<<<<<<< HEAD
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
+=======
+	@PreAuthorize("hasRole('ROLE_ADMIN')") 
+>>>>>>> master
 	public String remove(Member member, RedirectAttributes rttr) throws Exception {
 		int count = service.remove(member);
 		if (count != 0) {
@@ -128,12 +136,17 @@ public class MemberController {
 		return "redirect:/user/list";
 	}
 
+<<<<<<< HEAD
 	// 최초 관리자를 생성하는 화면요청
+=======
+	// 최초 관리자 생성하는 화면요청
+>>>>>>> master
 	@GetMapping("/setup")
 	public String setupAdminForm(Model model) throws Exception {
 		// 회원 테이블 데이터 건수를 확인하여 최초 관리자 등록 페이지를 표시한다.
 		Member member = new Member();
 		model.addAttribute(member);
+<<<<<<< HEAD
 		if (service.countAll() == 0) {
 			return "user/setup";
 		}
@@ -145,6 +158,20 @@ public class MemberController {
 	@PostMapping("/setup")
 	public String setupAdmin(Member member, RedirectAttributes rttr) throws Exception {
 		// 회원 테이블 데이터 건수를 확인하여 빈 테이블이면 최초 관리자를 생성한다.
+=======
+
+		if (service.countAll() == 0) {
+			return "user/setup";
+		}
+		// 회원 테이블에 데이터가 존재하면 최초 관리자를 생성할 수 없으므로 실패페이지로 이동
+		return "user/setupFailure";
+	}
+
+	//회원 테이블에 데이터가 없으면 최초 관리자를 생성.
+	@PostMapping("/setup")
+	public String setupAdmin(Member member, RedirectAttributes rttr) throws Exception {
+		// 회원 테이블 데이터 건수를 확인하여 빈 테이블이면 최초 관리자를 생성.
+>>>>>>> master
 		if (service.countAll() == 0) {
 			String inputPassword = member.getUserPw();
 			member.setUserPw(passwordEncoder.encode(inputPassword));
@@ -164,7 +191,11 @@ public class MemberController {
 	public void registerSuccess(Model model) throws Exception {
 	}
 
+<<<<<<< HEAD
 	// 등록 성공 페이지
+=======
+	// 등록 실패 페이지
+>>>>>>> master
 	@RequestMapping(value = "/registerFailed", method = RequestMethod.GET)
 	public void registerFailed(Model model) throws Exception {
 	}

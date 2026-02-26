@@ -50,10 +50,18 @@
 				<spring:message code="action.list" />
 			</button>
 		</div>
+<<<<<<< HEAD
 
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 		<script>
+=======
+	</div>
+
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+	<script>
+>>>>>>> master
 		<!-- $(document).ready(function() : html 코드가 document로 객체가 완료 -->
 		$(document).ready(function() {
 			<!-- form 객체찾기  -->

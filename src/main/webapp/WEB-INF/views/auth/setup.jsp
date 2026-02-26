@@ -45,9 +45,15 @@
 			<button type="submit" id="btnRegister">
 				<spring:message code="action.register" />
 			</button>
+<<<<<<< HEAD
 				<button type="submit" id="btnList">
 					<spring:message code="action.list" />
 				</button>
+=======
+    		<button type="submit" id="btnList">
+				<spring:message code="action.list" />
+			</button>
+>>>>>>> master
 		</div>
 	</div>
 
