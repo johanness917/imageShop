@@ -21,33 +21,24 @@
 
 	<div align="center">
 		<h2>
-			<spring:message code="board.header.read" />
+			<spring:message code="notice.header.read" />
 		</h2>
 
-		<form:form modelAttribute="board">
-			<form:hidden path="boardNo" />
-
-			<input type="hidden" id="page" name="page" value="${pgrq.page}">
-			<input type="hidden" id="sizePerPage" name="sizePerPage"
-				value="${pgrq.sizePerPage}">
-
+		<form:form modelAttribute="notice">
+			<form:hidden path="noticeNo" />
 			<table>
 				<tr>
-					<td><spring:message code="board.title" /></td>
+					<td><spring:message code="notice.title" /></td>
 					<td><form:input path="title" readonly="true" /></td>
 					<td><font color="red"><form:errors path="title" /></font></td>
 				</tr>
 				<tr>
-					<td><spring:message code="board.writer" /></td>
-					<td><form:input path="writer" readonly="true" /></td>
-					<td><font color="red"><form:errors path="writer" /></font></td>
-				</tr>
-				<tr>
-					<td><spring:message code="board.content" /></td>
+					<td><spring:message code="notice.content" /></td>
 					<td><form:textarea path="content" readonly="true" /></td>
 					<td><font color="red"><form:errors path="content" /></font></td>
 				</tr>
 			</table>
+
 		</form:form>
 
 		<div style="margin-top: 10px;">
@@ -69,9 +60,6 @@
 					<button type="button" id="btnEdit">
 						<spring:message code="action.edit" />
 					</button>
-					<button type="button" id="btnRemove">
-						<spring:message code="action.remove" />
-					</button>
 				</c:if>
 			</sec:authorize>
 
@@ -84,41 +72,21 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 	<script>
-		$(document).ready(
-				function() {
-					let boardNo = $("#boardNo").val();
-					let page = $("#page").val();
-					let sizePerPage = $("#sizePerPage").val();
-
-					// 수정 페이지 이동
-					$("#btnEdit").on(
-							"click",
-							function() {
-								self.location = "/board/modify?page=" + page
-										+ "&sizePerPage=" + sizePerPage
-										+ "&boardNo=" + boardNo;
-							});
-
-					// 삭제 처리 이동
-					$("#btnRemove").on(
-							"click",
-							function() {
-								if (confirm("정말 삭제하시겠습니까?")) {
-									self.location = "/board/remove?page="
-											+ page + "&sizePerPage="
-											+ sizePerPage + "&boardNo="
-											+ boardNo;
-								}
-							});
-
-					// 목록 페이지 이동 (페이지 번호 유지)
-					$("#btnList").on(
-							"click",
-							function() {
-								self.location = "/board/list?page=" + page
-										+ "&sizePerPage=" + sizePerPage;
-							});
-				});
+		$(document).ready(function() {
+			var formObj = $("#notice");
+			console.log(formObj);
+			$("#btnEdit").on("click", function() {
+				let noticeNo = $("#noticeNo").val();
+				self.location = "/notice/modify?noticeNo=" + noticeNo;
+			});
+			$("#btnRemove").on("click", function() {
+				let noticeNo = $("#noticeNo").val();
+				self.location = "/notice/remove?noticeNo=" + noticeNo;
+			});
+			$("#btnList").on("click", function() {
+				self.location = "/board/list"
+			});
+		});
 	</script>
 </body>
 </html>

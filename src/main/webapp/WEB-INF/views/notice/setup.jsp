@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> 
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
 		<h2>
 			<spring:message code="user.header.register" />
 		</h2>
-		<form:form modelAttribute="member" action="/user/setup"	method="post">
+		<form:form modelAttribute="member" action="/user/setup" method="post">
 			<table class="user_table">
 				<tr>
 					<td><spring:message code="user.userId" /></td>
@@ -30,7 +31,7 @@
 				</tr>
 				<tr>
 					<td><spring:message code="user.userPw" /></td>
-					<td><form:input path="userPw" /></td>
+					<td><form:password path="userPw" /></td>
 					<td><font color="red"><form:errors path="userPw" /></font></td>
 				</tr>
 				<tr>
@@ -45,7 +46,7 @@
 			<button type="submit" id="btnRegister">
 				<spring:message code="action.register" />
 			</button>
-    		<button type="submit" id="btnList">
+			<button type="submit" id="btnList">
 				<spring:message code="action.list" />
 			</button>
 		</div>
@@ -60,11 +61,11 @@
 			$("#btnRegister").on("click", function() {
 				formObj.submit();
 			});
-		
+
 			$("#btnList").on("click", function() {
 				self.location = "/user/list";
 			});
-		
+
 		});
 	</script>
 </body>

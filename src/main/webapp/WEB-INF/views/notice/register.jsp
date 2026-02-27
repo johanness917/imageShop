@@ -21,38 +21,32 @@
 
 	<div align="center">
 		<h2>
-			<spring:message code="board.header.register" />
+			<spring:message code="notice.header.register" />
 		</h2>
 
-		<form:form modelAttribute="board" action="/board/register"
-			method="post">
+		<form:form modelAttribute="notice" action="/notice/register" method="post">
 			<table>
 				<tr>
-					<td><spring:message code="board.title" /></td>
+					<td><spring:message code="notice.title" /></td>
 					<td><form:input path="title" /></td>
 					<td><font color="red"><form:errors path="title" /></font></td>
 				</tr>
 				<tr>
-					<td><spring:message code="board.writer" /></td>
-					<td><form:input path="writer" readonly="true" /></td>
-					<td><font color="red"><form:errors path="writer" /></font></td>
-				</tr>
-				<tr>
-					<td><spring:message code="board.content" /></td>
-					<td><form:textarea path="content" rows="10" cols="50" /></td>
+					<td><spring:message code="notice.content" /></td>
+					<td><form:textarea path="content" /></td>
 					<td><font color="red"><form:errors path="content" /></font></td>
 				</tr>
 			</table>
 		</form:form>
 
 		<div style="margin-top: 10px;">
-			<sec:authorize access="isAuthenticated()">
-				<button type="button" id="btnRegister">
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<button type="submit" id="btnRegister">
 					<spring:message code="action.register" />
 				</button>
 			</sec:authorize>
 
-			<button type="button" id="btnList">
+			<button type="submit" id="btnList">
 				<spring:message code="action.list" />
 			</button>
 		</div>
@@ -62,7 +56,7 @@
 
 	<script>
 		$(document).ready(function() {
-			let formObj = $("#board");
+			let formObj = $("#notice");
 
 			// 등록 버튼 클릭 시 폼 전송
 			$("#btnRegister").on("click", function() {
@@ -71,7 +65,7 @@
 
 			// 목록 버튼 클릭 시 1페이지로 이동 (페이징 파라미터 포함)
 			$("#btnList").on("click", function() {
-				self.location = "/board/list?page=1&sizePerPage=10";
+				self.location = "/notice/list";
 			});
 		});
 	</script>

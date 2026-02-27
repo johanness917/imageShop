@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,47 +21,42 @@
 
 	<div align="center">
 		<h2>
-			<spring:message code="board.header.modify" />
+			<spring:message code="notice.header.read" />
 		</h2>
 
-		<%-- 게시글 수정을 위한 폼 --%>
-		<form:form modelAttribute="board" action="/board/modify" method="post">
-			<form:hidden path="boardNo" />
-
-			<%-- 페이징 및 페이지당 수량 유지를 위한 히든 필드 --%>
-			<input type="hidden" name="page" value="${pgrq.page}">
-			<input type="hidden" name="sizePerPage" value="${pgrq.sizePerPage}">
-
+		<form:form modelAttribute="notice" action="/notice/modify"
+			method="post">
+			<form:hidden path="noticeNo" />
 			<table>
 				<tr>
-					<td><spring:message code="board.title" /></td>
+					<td><spring:message code="notice.title" /></td>
 					<td><form:input path="title" /></td>
 					<td><font color="red"><form:errors path="title" /></font></td>
 				</tr>
 				<tr>
-					<td><spring:message code="board.writer" /></td>
-					<td><form:input path="writer" readonly="true" /></td>
-					<td><font color="red"><form:errors path="writer" /></font></td>
-				</tr>
-				<tr>
-					<td><spring:message code="board.content" /></td>
-					<td><form:textarea path="content" rows="10" cols="50" /></td>
+					<td><spring:message code="notice.content" /></td>
+					<td><form:textarea path="content" /></td>
 					<td><font color="red"><form:errors path="content" /></font></td>
 				</tr>
 			</table>
+
 		</form:form>
 
 		<div style="margin-top: 10px;">
 			<sec:authentication property="principal" var="principal" />
 
-			<%-- 1. 관리자이거나 2. 본인일 경우에만 수정/삭제 버튼 노출 --%>
-			<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')">
-				<c:if test="${principal.username eq board.writer || principal.authorities.contains('ROLE_ADMIN')}">
-					<button type="button" id="btnModify">
-						<spring:message code="action.modify" />
-					</button>
-					<button type="button" id="btnRemove">
-						<spring:message code="action.remove" />
+			<%-- 관리자 권한 --%>
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<button type="submit" id="btnModify">
+					<spring:message code="action.modify" />
+				</button>
+			</sec:authorize>
+
+			<%-- 일반 회원이고 작성자 본인일 때 --%>
+			<sec:authorize access="hasRole('ROLE_MEMBER')">
+				<c:if test="${principal.username eq board.writer}">
+					<button type="submit" id="btnEdit">
+						<spring:message code="action.edit" />
 					</button>
 				</c:if>
 			</sec:authorize>
@@ -74,25 +71,16 @@
 
 	<script>
 		$(document).ready(function() {
-			let formObj = $("#board");
+			var formObj = $("#notice");
 
-			// 수정 버튼 클릭 시 폼 제출
+			// 관리자용 수정 버튼 클릭 시
 			$("#btnModify").on("click", function() {
 				formObj.submit();
 			});
 
-			// 삭제 버튼 클릭 시
-			$("#btnRemove").on("click", function() {
-				if(confirm("정말 삭제하시겠습니까?")) {
-					let boardNo = $("#boardNo").val();
-					// pgrq.toUriString()을 사용하여 검색/페이징 정보 유지하며 이동
-					self.location = "/board/remove${pgrq.toUriString()}&boardNo=" + boardNo;
-				}
-			});
-
-			// 목록 버튼 클릭 시 기존 페이지 정보를 가지고 목록으로 회귀
+			// 목록 버튼 클릭 시 (공지사항 리스트로 경로 수정 제안)
 			$("#btnList").on("click", function() {
-				self.location = "/board/list${pgrq.toUriString()}";
+				self.location = "/notice/list";
 			});
 		});
 	</script>
