@@ -16,16 +16,13 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
 			<spring:message code="codegroup.header.read" />
 		</h2>
 		<form:form modelAttribute="codeDetail">
-<<<<<<< HEAD
 			<form:hidden path="groupCode" />
-=======
-			<form:hidden path="groupCode"/>  
->>>>>>> master
 			<table>
 				<tr>
 					<td><spring:message code="codedetail.groupCode" /></td>
@@ -41,19 +38,19 @@
 				<tr>
 					<td><spring:message code="codedetail.codeName" /></td>
 					<td><form:input path="codeName" readonly="true" /></td>
-					<td><font color="red"><form:errors path="codeName" /></font></td>
+					<td><font color="red"><form:errors codeName" /></font></td>
 				</tr>
 			</table>
 		</form:form>
 
-		<div>
-			<button type="submit" id="btnEdit">
+		<div style="margin-top: 10px;">
+			<button type="button" id="btnEdit">
 				<spring:message code="action.edit" />
 			</button>
-			<button type="submit" id="btnRemove">
+			<button type="button" id="btnRemove">
 				<spring:message code="action.remove" />
 			</button>
-			<button type="submit" id="btnList">
+			<button type="button" id="btnList">
 				<spring:message code="action.list" />
 			</button>
 		</div>
@@ -62,24 +59,27 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 	<script>
-		<!-- $(document).ready(function() : html 코드가 document로 객체가 완료 -->
 		$(document).ready(function() {
-			<!-- form 객체찾기  -->
 			let formObj = $("#codeDetail");
-			<!-- $("#btnRegister").on("click", function() : 등록버튼을 클릭할때 작동하는 핸들러정의 -->
+
+			// 수정 화면으로 이동
 			$("#btnEdit").on("click", function() {
-				formObj.attr("action","/codedetail/modify");
-				formObj.attr("method","get");
-				formObj.submit(); 
+				formObj.attr("action", "/codedetail/modify");
+				formObj.attr("method", "get");
+				formObj.submit();
 			});
-			<!-- $("#btnList").on("click", function() { : 목록버튼을 클릭할때 작동하는 핸들러정의 -->
+
+			// 삭제 처리 (get 방식으로 전송)
 			$("#btnRemove").on("click", function() {
-				formObj.attr("action","/codedetail/remove");
-				formObj.attr("method","get");
-				formObj.submit(); 
+				if (confirm("정말 삭제하시겠습니까?")) {
+					formObj.attr("action", "/codedetail/remove");
+					formObj.attr("method", "get");
+					formObj.submit();
+				}
 			});
+
+			// 목록으로 이동
 			$("#btnList").on("click", function() {
-				<!-- 서버에 페이지요청  http://localhost:8080/codedetail/list -->
 				self.location = "/codedetail/list";
 			});
 		});

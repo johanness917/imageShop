@@ -18,6 +18,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
 			<spring:message code="user.header.read" />
@@ -46,7 +47,6 @@
 							itemValue="value" itemLabel="label" disabled="true" /></td>
 					<td><font color="red"><form:errors path="job" /></font></td>
 				</tr>
-<<<<<<< HEAD
 
 				<tr>
 					<td><spring:message code="user.auth" /> - 1</td>
@@ -58,10 +58,9 @@
 							<form:option value="ROLE_ADMIN" label="관리자" />
 						</form:select></td>
 				</tr>
-
 				<tr>
 					<td><spring:message code="user.auth" /> - 2</td>
-					<td colspan="2"><form:select path="authList[2].auth"
+					<td colspan="2"><form:select path="authList[1].auth"
 							disabled="true">
 							<form:option value="" label="=== 선택해 주세요 ====" />
 							<form:option value="ROLE_USER" label="사용자" />
@@ -69,7 +68,6 @@
 							<form:option value="ROLE_ADMIN" label="관리자" />
 						</form:select></td>
 				</tr>
-
 				<tr>
 					<td><spring:message code="user.auth" /> - 3</td>
 					<td colspan="2"><form:select path="authList[2].auth"
@@ -80,54 +78,18 @@
 							<form:option value="ROLE_ADMIN" label="관리자" />
 						</form:select></td>
 				</tr>
-
-=======
-				<tr>
-					<td><spring:message code="user.auth" /> - 1</td> 
-					<td colspan="2">
-						<form:select path="authList[0].auth" disabled="true">
-							<form:option value="" label="=== 선택해 주세요 ====" />
-							<form:option value="ROLE_USER" label="사용자" /> 
-							<form:option value="ROLE_MEMBER" label="회원" /> 
-							<form:option value="ROLE_ADMIN" label="관리자" /> 
-						</form:select>
-					</td>
-				</tr>
-				<tr>
-					<td><spring:message code="user.auth" /> - 2</td> 
-					<td colspan="2">
-						<form:select path="authList[1].auth" disabled="true">
-							<form:option value="" label="=== 선택해 주세요 ====" />
-							<form:option value="ROLE_USER" label="사용자" /> 
-							<form:option value="ROLE_MEMBER" label="회원" /> 
-							<form:option value="ROLE_ADMIN" label="관리자" /> 
-						</form:select>
-					</td>
-				</tr>
-				<tr>
-					<td><spring:message code="user.auth" /> - 3</td> 
-					<td colspan="2">
-						<form:select path="authList[2].auth" disabled="true">
-							<form:option value="" label="=== 선택해 주세요 ====" />
-							<form:option value="ROLE_USER" label="사용자" /> 
-							<form:option value="ROLE_MEMBER" label="회원" /> 
-							<form:option value="ROLE_ADMIN" label="관리자" /> 
-						</form:select>
-					</td>
-				</tr>								
->>>>>>> master
 			</table>
 		</form:form>
 
-		<div>
-			<button type="submit" id="btnEdit">
+		<div style="margin-top: 10px;">
+			<button type="button" id="btnEdit">
 				<spring:message code="action.edit" />
 			</button>
-			<button type="submit" id="btnRemove">
+			<button type="button" id="btnRemove">
 				<spring:message code="action.remove" />
 			</button>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<button type="submit" id="btnList">
+				<button type="button" id="btnList">
 					<spring:message code="action.list" />
 				</button>
 			</sec:authorize>
@@ -141,38 +103,22 @@
 			let formObj = $("#member");
 
 			$("#btnEdit").on("click", function() {
-<<<<<<< HEAD
-				formObj.attr("action", "/user/modify")
-				formObj.attr("method", "post")
-=======
-				formObj.attr("action","/user/modify")
-				formObj.attr("method","post")
->>>>>>> master
+				formObj.attr("action", "/user/modify");
+				formObj.attr("method", "post");
 				formObj.submit();
 			});
 
 			$("#btnRemove").on("click", function() {
-<<<<<<< HEAD
-				formObj.attr("action", "/user/remove")
-				formObj.attr("method", "post")
-				formObj.submit();
+				if (confirm("정말 삭제하시겠습니까?")) {
+					formObj.attr("action", "/user/remove");
+					formObj.attr("method", "post");
+					formObj.submit();
+				}
 			});
 
 			$("#btnList").on("click", function() {
 				self.location = "/user/list";
 			});
-
-=======
-				formObj.attr("action","/user/remove")
-				formObj.attr("method","post")
-				formObj.submit();
-			});
-		
-			$("#btnList").on("click", function() {
-				self.location = "/user/list";
-			});
-		
->>>>>>> master
 		});
 	</script>
 </body>

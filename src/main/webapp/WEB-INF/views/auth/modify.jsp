@@ -18,30 +18,25 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
 			<spring:message code="user.header.modify" />
 		</h2>
-<<<<<<< HEAD
+
 		<form:form modelAttribute="member" action="/user/modify2"
 			method="post">
-=======
-		<form:form modelAttribute="member"  action="/user/modify2" method="post">
->>>>>>> master
 			<form:hidden path="userNo" />
+			<%-- 수정을 위해 userId도 서버로 전송되어야 하므로 hidden으로 한 번 더 잡아주거나 readonly를 사용합니다. --%>
 			<form:hidden path="userId" />
+
 			<table class="user_table">
 				<tr>
 					<td><spring:message code="user.userId" /></td>
-<<<<<<< HEAD
+					<%-- disabled를 쓰면 값이 서버로 전송되지 않으므로 readonly를 권장합니다. --%>
 					<td><form:input path="userId" readonly="true" /></td>
 					<td><font color="red"><form:errors path="userId" /></font></td>
-				</tr>			
-=======
-					<td><form:input path="userId" disabled="true" /></td>
-					<td><font color="red"><form:errors path="userId" /></font></td>
 				</tr>
->>>>>>> master
 				<tr>
 					<td><spring:message code="user.userName" /></td>
 					<td><form:input path="userName" /></td>
@@ -53,8 +48,8 @@
 							itemValue="value" itemLabel="label" /></td>
 					<td><font color="red"><form:errors path="job" /></font></td>
 				</tr>
-<<<<<<< HEAD
 
+				<%-- 회원 권한 설정 (0, 1, 2 순서 유지) --%>
 				<tr>
 					<td><spring:message code="user.auth" /> - 1</td>
 					<td colspan="2"><form:select path="authList[0].auth">
@@ -64,17 +59,15 @@
 							<form:option value="ROLE_ADMIN" label="관리자" />
 						</form:select></td>
 				</tr>
-
 				<tr>
 					<td><spring:message code="user.auth" /> - 2</td>
-					<td colspan="2"><form:select path="authList[2].auth">
+					<td colspan="2"><form:select path="authList[1].auth">
 							<form:option value="" label="=== 선택해 주세요 ====" />
 							<form:option value="ROLE_USER" label="사용자" />
 							<form:option value="ROLE_MEMBER" label="회원" />
 							<form:option value="ROLE_ADMIN" label="관리자" />
 						</form:select></td>
 				</tr>
-
 				<tr>
 					<td><spring:message code="user.auth" /> - 3</td>
 					<td colspan="2"><form:select path="authList[2].auth">
@@ -84,55 +77,16 @@
 							<form:option value="ROLE_ADMIN" label="관리자" />
 						</form:select></td>
 				</tr>
-
-=======
-				<tr>
-					<td><spring:message code="user.auth" /> - 1</td> 
-					<td colspan="2">
-						<form:select path="authList[0].auth">
-							<form:option value="" label="=== 선택해 주세요 ====" />
-							<form:option value="ROLE_USER" label="사용자" /> 
-							<form:option value="ROLE_MEMBER" label="회원" /> 
-							<form:option value="ROLE_ADMIN" label="관리자" /> 
-						</form:select>
-					</td>
-				</tr>
-				<tr>
-					<td><spring:message code="user.auth" /> - 2</td> 
-					<td colspan="2">
-						<form:select path="authList[1].auth">
-							<form:option value="" label="=== 선택해 주세요 ====" />
-							<form:option value="ROLE_USER" label="사용자" /> 
-							<form:option value="ROLE_MEMBER" label="회원" /> 
-							<form:option value="ROLE_ADMIN" label="관리자" /> 
-						</form:select>
-					</td>
-				</tr>
-				<tr>
-					<td><spring:message code="user.auth" /> - 3</td> 
-					<td colspan="2">
-						<form:select path="authList[2].auth">
-							<form:option value="" label="=== 선택해 주세요 ====" />
-							<form:option value="ROLE_USER" label="사용자" /> 
-							<form:option value="ROLE_MEMBER" label="회원" /> 
-							<form:option value="ROLE_ADMIN" label="관리자" /> 
-						</form:select>
-					</td>
-				</tr>								
->>>>>>> master
 			</table>
 		</form:form>
 
-		<div>
+		<div style="margin-top: 10px;">
 			<button type="submit" id="btnModify">
 				<spring:message code="action.modify" />
-<<<<<<< HEAD
-			</button>			
-=======
 			</button>
->>>>>>> master
+
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<button type="submit" id="btnList">
+				<button type="button" id="btnList">
 					<spring:message code="action.list" />
 				</button>
 			</sec:authorize>
@@ -152,11 +106,6 @@
 			$("#btnList").on("click", function() {
 				self.location = "/user/list";
 			});
-<<<<<<< HEAD
-
-=======
-		
->>>>>>> master
 		});
 	</script>
 </body>

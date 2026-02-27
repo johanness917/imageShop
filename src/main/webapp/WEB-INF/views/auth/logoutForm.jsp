@@ -18,39 +18,28 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
 			<spring:message code="auth.header.logout" />
 		</h2>
-		
-<<<<<<< HEAD
-		<form method="post" action="/auth/login">
-=======
+
+		<%-- 로그아웃 처리를 수행할 URL 주소를 정확히 지정합니다. --%>
 		<form method="post" action="/auth/logout">
->>>>>>> master
 			<table>
 				<tr>
 					<td align="center">
-						<button>
-<<<<<<< HEAD
+						<button type="submit">
 							<spring:message code="action.logout" />
-=======
-						  <spring:message code="action.logout" />
->>>>>>> master
 						</button>
 					</td>
 				</tr>
 			</table>
+			<%-- POST 방식 로그아웃 시 CSRF 토큰은 필수입니다. --%>
 			<sec:csrfInput />
 		</form>
-<<<<<<< HEAD
-
-		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-=======
 	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-
->>>>>>> master
 </body>
 </html>

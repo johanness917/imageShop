@@ -16,10 +16,12 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
 			<spring:message code="codegroup.header.register" />
 		</h2>
+
 		<form:form modelAttribute="codeDetail" action="/codedetail/register"
 			method="post">
 			<table>
@@ -42,38 +44,29 @@
 			</table>
 		</form:form>
 
-		<div>
-			<button type="submit" id="btnRegister">
+		<div style="margin-top: 10px;">
+			<button type="button" id="btnRegister">
 				<spring:message code="action.register" />
 			</button>
-			<button type="submit" id="btnList">
+			<button type="button" id="btnList">
 				<spring:message code="action.list" />
 			</button>
 		</div>
-<<<<<<< HEAD
-
-		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-
-		<script>
-=======
 	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 	<script>
->>>>>>> master
-		<!-- $(document).ready(function() : html 코드가 document로 객체가 완료 -->
 		$(document).ready(function() {
-			<!-- form 객체찾기  -->
 			let formObj = $("#codeDetail");
-			<!-- $("#btnRegister").on("click", function() : 등록버튼을 클릭할때 작동하는 핸들러정의 -->
+
+			// 등록 버튼 클릭 시 폼 전송
 			$("#btnRegister").on("click", function() {
-				<!-- action="/codedetail/register" method="get" 서버로 전송 -->
 				formObj.submit();
 			});
-			<!-- $("#btnList").on("click", function() { : 목록버튼을 클릭할때 작동하는 핸들러정의 -->
+
+			// 목록 버튼 클릭 시 목록 페이지로 이동
 			$("#btnList").on("click", function() {
-				<!-- 서버에 페이지요청  http://localhost:8080/codegroup/list -->
 				self.location = "/codedetail/list";
 			});
 		});

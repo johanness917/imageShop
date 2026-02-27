@@ -16,18 +16,16 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
 			<spring:message code="codegroup.header.read" />
 		</h2>
+
 		<form:form modelAttribute="codeDetail">
-<<<<<<< HEAD
 			<form:hidden path="groupCode" />
 			<form:hidden path="codeValue" />
-=======
-			<form:hidden path="groupCode"/>
-			<form:hidden path="codeValue"/>
->>>>>>> master
+
 			<table>
 				<tr>
 					<td><spring:message code="codedetail.groupCode" /></td>
@@ -37,12 +35,8 @@
 				</tr>
 				<tr>
 					<td><spring:message code="codedetail.codeValue" /></td>
-<<<<<<< HEAD
 					<td><form:input path="codeValue" readonly="true"
 							disabled="true" /></td>
-=======
-					<td><form:input path="codeValue" readonly="true" disabled="true" /></td>
->>>>>>> master
 					<td><font color="red"><form:errors path="codeValue" /></font></td>
 				</tr>
 				<tr>
@@ -53,11 +47,11 @@
 			</table>
 		</form:form>
 
-		<div>
-			<button type="submit" id="btnModify">
+		<div style="margin-top: 10px;">
+			<button type="button" id="btnModify">
 				<spring:message code="action.modify" />
 			</button>
-			<button type="submit" id="btnList">
+			<button type="button" id="btnList">
 				<spring:message code="action.list" />
 			</button>
 		</div>
@@ -66,19 +60,18 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 	<script>
-		<!-- $(document).ready(function() : html 코드가 document로 객체가 완료 -->
 		$(document).ready(function() {
-			<!-- form 객체찾기  -->
 			let formObj = $("#codeDetail");
-			<!-- $("#btnRegister").on("click", function() : 등록버튼을 클릭할때 작동하는 핸들러정의 -->
+
+			// 수정 버튼 클릭 시
 			$("#btnModify").on("click", function() {
-				formObj.attr("action","/codedetail/modify");
-				formObj.attr("method","post");
-				formObj.submit(); 
+				formObj.attr("action", "/codedetail/modify");
+				formObj.attr("method", "post");
+				formObj.submit();
 			});
-			
+
+			// 목록 버튼 클릭 시
 			$("#btnList").on("click", function() {
-				<!-- 서버에 페이지요청  http://localhost:8080/codedetail/list -->
 				self.location = "/codedetail/list";
 			});
 		});

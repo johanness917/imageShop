@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> 
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,11 +18,13 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
 			<spring:message code="user.header.register" />
 		</h2>
-		<form:form modelAttribute="member" action="/user/setup"	method="post">
+
+		<form:form modelAttribute="member" action="/user/setup" method="post">
 			<table class="user_table">
 				<tr>
 					<td><spring:message code="user.userId" /></td>
@@ -41,19 +44,13 @@
 			</table>
 		</form:form>
 
-		<div>
-			<button type="submit" id="btnRegister">
+		<div style="margin-top: 10px;">
+			<button type="button" id="btnRegister">
 				<spring:message code="action.register" />
 			</button>
-<<<<<<< HEAD
-				<button type="submit" id="btnList">
-					<spring:message code="action.list" />
-				</button>
-=======
-    		<button type="submit" id="btnList">
+			<button type="button" id="btnList">
 				<spring:message code="action.list" />
 			</button>
->>>>>>> master
 		</div>
 	</div>
 
@@ -63,14 +60,15 @@
 		$(document).ready(function() {
 			let formObj = $("#member");
 
+			// 등록 버튼 클릭 시 폼 제출
 			$("#btnRegister").on("click", function() {
 				formObj.submit();
 			});
-		
+
+			// 목록 버튼 클릭 시 사용자 목록으로 이동
 			$("#btnList").on("click", function() {
 				self.location = "/user/list";
 			});
-		
 		});
 	</script>
 </body>

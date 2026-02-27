@@ -18,15 +18,12 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	@Override
 	public int register(Member member) throws Exception {
-<<<<<<< HEAD
-=======
-		// TODO Auto-generated method stub
->>>>>>> master
 		int count = mapper.register(member);
 
 		if (count != 0) {
-			// 회원 권한 생성
+			// 회원 권한 생성 (기본 권한: ROLE_MEMBER)
 			MemberAuth memberAuth = new MemberAuth();
+			memberAuth.setUserNo(member.getUserNo());
 			memberAuth.setAuth("ROLE_MEMBER");
 			mapper.createAuth(memberAuth);
 		}
@@ -41,31 +38,19 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member read(Member member) throws Exception {
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 		return mapper.read(member);
 	}
 
 	@Transactional
 	@Override
 	public int modify(Member member) throws Exception {
-<<<<<<< HEAD
 		// 회원정보 수정
 		int count = mapper.modify(member);
-		// 회원권한 삭제
+
+		// 기존 회원권한 삭제 후 재등록 (수정 로직)
 		mapper.deleteAuth(member);
 
-		// 사용자가 선택한 권한내용을 가져온다.
-=======
-		//회원정보 수정
-		int count = mapper.modify(member);
-		//회원권한 삭제
-		mapper.deleteAuth(member);
-		
-		//사용자가 선택한 권한내용을 가져온다.
->>>>>>> master
+		// 사용자가 선택한 권한내용을 가져와서 등록
 		List<MemberAuth> authList = member.getAuthList();
 		for (int i = 0; i < authList.size(); i++) {
 			MemberAuth memberAuth = authList.get(i);
@@ -74,56 +59,38 @@ public class MemberServiceImpl implements MemberService {
 			if (auth == null || auth.trim().length() == 0) {
 				continue;
 			}
-			// 변경된 회원권한 추가
+
 			memberAuth.setUserNo(member.getUserNo());
-			mapper.modifyAuth(memberAuth);
+			mapper.createAuth(memberAuth); // 권한 생성 메서드 호출
 		}
-<<<<<<< HEAD
+
 		return count;
-=======
-		
-		return count; 
->>>>>>> master
 	}
 
 	@Transactional
 	@Override
 	public int remove(Member member) throws Exception {
-<<<<<<< HEAD
-		// 회원 권한 삭제
+		// 회원 권한 삭제 먼저 진행 후 회원 탈퇴 처리
 		mapper.deleteAuth(member);
 		return mapper.remove(member);
-=======
-		// 회원 권한 삭제 
-		mapper.deleteAuth(member); 
-		return mapper.remove(member); 
->>>>>>> master
 	}
 
 	@Override
 	public int countAll() throws Exception {
-<<<<<<< HEAD
-=======
-		
->>>>>>> master
 		return mapper.countAll();
 	}
 
 	@Transactional
 	@Override
 	public void setupAdmin(Member member) throws Exception {
+		// 관리자 계정 생성
 		int count = mapper.register(member);
 
 		if (count != 0) {
-			// 회원 권한 생성
+			// 관리자 권한 부여
 			MemberAuth memberAuth = new MemberAuth();
-<<<<<<< HEAD
 			memberAuth.setUserNo(member.getUserNo());
 			memberAuth.setAuth("ROLE_ADMIN");
-=======
-			memberAuth.setUserNo(member.getUserNo()); 
-     		memberAuth.setAuth("ROLE_ADMIN");
->>>>>>> master
 			mapper.createAuth(memberAuth);
 		}
 	}

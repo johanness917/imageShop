@@ -22,26 +22,19 @@
 		<h2>
 			<spring:message code="user.header.modify" />
 		</h2>
-<<<<<<< HEAD
+
 		<form:form modelAttribute="member" action="/user/modify2"
 			method="post">
-=======
-		<form:form modelAttribute="member"  action="/user/modify2" method="post">
->>>>>>> master
 			<form:hidden path="userNo" />
 			<form:hidden path="userId" />
+
 			<table class="user_table">
 				<tr>
 					<td><spring:message code="user.userId" /></td>
-<<<<<<< HEAD
+					<%-- readonly를 사용해야 폼 제출 시 userId 값이 서버로 전송됩니다. --%>
 					<td><form:input path="userId" readonly="true" /></td>
 					<td><font color="red"><form:errors path="userId" /></font></td>
-				</tr>			
-=======
-					<td><form:input path="userId" disabled="true" /></td>
-					<td><font color="red"><form:errors path="userId" /></font></td>
 				</tr>
->>>>>>> master
 				<tr>
 					<td><spring:message code="user.userName" /></td>
 					<td><form:input path="userName" /></td>
@@ -53,8 +46,8 @@
 							itemValue="value" itemLabel="label" /></td>
 					<td><font color="red"><form:errors path="job" /></font></td>
 				</tr>
-<<<<<<< HEAD
 
+				<%-- 권한 설정: 인덱스 0, 1, 2 순서대로 배치 --%>
 				<tr>
 					<td><spring:message code="user.auth" /> - 1</td>
 					<td colspan="2"><form:select path="authList[0].auth">
@@ -64,17 +57,15 @@
 							<form:option value="ROLE_ADMIN" label="관리자" />
 						</form:select></td>
 				</tr>
-
 				<tr>
 					<td><spring:message code="user.auth" /> - 2</td>
-					<td colspan="2"><form:select path="authList[2].auth">
+					<td colspan="2"><form:select path="authList[1].auth">
 							<form:option value="" label="=== 선택해 주세요 ====" />
 							<form:option value="ROLE_USER" label="사용자" />
 							<form:option value="ROLE_MEMBER" label="회원" />
 							<form:option value="ROLE_ADMIN" label="관리자" />
 						</form:select></td>
 				</tr>
-
 				<tr>
 					<td><spring:message code="user.auth" /> - 3</td>
 					<td colspan="2"><form:select path="authList[2].auth">
@@ -84,55 +75,15 @@
 							<form:option value="ROLE_ADMIN" label="관리자" />
 						</form:select></td>
 				</tr>
-
-=======
-				<tr>
-					<td><spring:message code="user.auth" /> - 1</td> 
-					<td colspan="2">
-						<form:select path="authList[0].auth">
-							<form:option value="" label="=== 선택해 주세요 ====" />
-							<form:option value="ROLE_USER" label="사용자" /> 
-							<form:option value="ROLE_MEMBER" label="회원" /> 
-							<form:option value="ROLE_ADMIN" label="관리자" /> 
-						</form:select>
-					</td>
-				</tr>
-				<tr>
-					<td><spring:message code="user.auth" /> - 2</td> 
-					<td colspan="2">
-						<form:select path="authList[1].auth">
-							<form:option value="" label="=== 선택해 주세요 ====" />
-							<form:option value="ROLE_USER" label="사용자" /> 
-							<form:option value="ROLE_MEMBER" label="회원" /> 
-							<form:option value="ROLE_ADMIN" label="관리자" /> 
-						</form:select>
-					</td>
-				</tr>
-				<tr>
-					<td><spring:message code="user.auth" /> - 3</td> 
-					<td colspan="2">
-						<form:select path="authList[2].auth">
-							<form:option value="" label="=== 선택해 주세요 ====" />
-							<form:option value="ROLE_USER" label="사용자" /> 
-							<form:option value="ROLE_MEMBER" label="회원" /> 
-							<form:option value="ROLE_ADMIN" label="관리자" /> 
-						</form:select>
-					</td>
-				</tr>								
->>>>>>> master
 			</table>
 		</form:form>
 
-		<div>
-			<button type="submit" id="btnModify">
+		<div style="margin-top: 10px;">
+			<button type="button" id="btnModify">
 				<spring:message code="action.modify" />
-<<<<<<< HEAD
-			</button>			
-=======
 			</button>
->>>>>>> master
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<button type="submit" id="btnList">
+				<button type="button" id="btnList">
 					<spring:message code="action.list" />
 				</button>
 			</sec:authorize>
@@ -152,11 +103,6 @@
 			$("#btnList").on("click", function() {
 				self.location = "/user/list";
 			});
-<<<<<<< HEAD
-
-=======
-		
->>>>>>> master
 		});
 	</script>
 </body>

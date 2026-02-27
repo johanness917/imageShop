@@ -18,10 +18,12 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
 			<spring:message code="board.header.register" />
 		</h2>
+
 		<form:form modelAttribute="board" action="/board/register"
 			method="post">
 			<table>
@@ -37,23 +39,22 @@
 				</tr>
 				<tr>
 					<td><spring:message code="board.content" /></td>
-					<td><form:textarea path="content" /></td>
+					<td><form:textarea path="content" rows="10" cols="50" /></td>
 					<td><font color="red"><form:errors path="content" /></font></td>
 				</tr>
 			</table>
 		</form:form>
 
-		<div>
+		<div style="margin-top: 10px;">
 			<sec:authorize access="isAuthenticated()">
-				<button type="submit" id="btnRegister">
+				<button type="button" id="btnRegister">
 					<spring:message code="action.register" />
 				</button>
 			</sec:authorize>
-			
-			<button type="submit" id="btnList">
+
+			<button type="button" id="btnList">
 				<spring:message code="action.list" />
 			</button>
-			
 		</div>
 	</div>
 
@@ -63,18 +64,15 @@
 		$(document).ready(function() {
 			let formObj = $("#board");
 
+			// 등록 버튼 클릭 시 폼 전송
 			$("#btnRegister").on("click", function() {
 				formObj.submit();
 			});
 
+			// 목록 버튼 클릭 시 1페이지로 이동 (페이징 파라미터 포함)
 			$("#btnList").on("click", function() {
-<<<<<<< HEAD
-				self.location = "/board/list";
-=======
 				self.location = "/board/list?page=1&sizePerPage=10";
->>>>>>> master
 			});
-
 		});
 	</script>
 </body>

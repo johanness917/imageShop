@@ -18,60 +18,47 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
 			<spring:message code="auth.header.login" />
 		</h2>
-		<h2>
+		<%-- 에러 메시지나 로그아웃 메시지 출력 --%>
+		<h2 style="color: red;">
 			<c:out value="${error}" />
 		</h2>
-		<h2>
+		<h2 style="color: blue;">
 			<c:out value="${logout}" />
 		</h2>
+
 		<form method="post" action="/login">
 			<table>
 				<tr>
-					<td>아이디</td>
+					<td><spring:message code="user.userId" /></td>
 					<td><input type="text" name="username"></td>
 				</tr>
 				<tr>
-					<td>비밀번호</td>
+					<td><spring:message code="user.userPw" /></td>
 					<td><input type="password" name="password"></td>
 				</tr>
 				<tr>
 					<td></td>
-<<<<<<< HEAD
 					<td><input type="checkbox" name="remember-me"> <spring:message
 							code="auth.rememberMe" /></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button>
+						<button type="submit">
 							<spring:message code="action.login" />
 						</button>
 					</td>
-=======
-					<td><input type="checkbox" name="remember-me">
-					<spring:message code="auth.rememberMe" /></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-					<button>
-					  <spring:message code="action.login" />
-					</button></td>
->>>>>>> master
 				</tr>
 			</table>
+			<%-- 스프링 시큐리티 CSRF 토큰 --%>
 			<sec:csrfInput />
 		</form>
-<<<<<<< HEAD
-
-		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-=======
 	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-
->>>>>>> master
 </body>
 </html>

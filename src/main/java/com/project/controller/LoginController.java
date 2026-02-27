@@ -2,13 +2,7 @@ package com.project.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-=======
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
->>>>>>> master
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,17 +10,20 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/auth")
 public class LoginController {
+
 	// 에러 메시지와 로그아웃 메시지를 파라미터로 사용한다.
 	@RequestMapping("/login")
 	public String loginForm(String error, String logout, Model model) {
 		log.info("error: " + error);
 		log.info("logout: " + logout);
+
 		if (error != null) {
 			model.addAttribute("error", "로그인 에러!!!");
 		}
 		if (logout != null) {
 			model.addAttribute("logout", "로그아웃!!!");
 		}
+
 		return "auth/loginForm";
 	}
 
@@ -35,8 +32,4 @@ public class LoginController {
 		log.info("logoutForm");
 		return "auth/logoutForm";
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master

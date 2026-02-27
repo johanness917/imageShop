@@ -18,16 +18,12 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
+
 	<div align="center">
 		<h2>
-<<<<<<< HEAD
 			<spring:message code="common.cannotSetupAdmin" />
-=======
-			<spring:message code="common.cannotSetupAdmin"/>
->>>>>>> master
 		</h2>
 		<a href="/"><spring:message code="action.home" /></a>
-
 	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />

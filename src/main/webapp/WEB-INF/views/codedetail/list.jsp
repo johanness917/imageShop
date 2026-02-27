@@ -16,7 +16,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
-	<!-- 메인화면 작업시작 -->
+
 	<div align="center">
 		<h2>
 			<spring:message code="codedetail.header.list" />
@@ -48,12 +48,7 @@
 							<td align="center">${codeDetail.codeValue}</td>
 							<td align="left"><a
 								href="/codedetail/read?groupCode=${codeDetail.groupCode}&codeValue=${codeDetail.codeValue}">
-<<<<<<< HEAD
-									${codeDetail.codeName}</a></td>
-=======
-								${codeDetail.codeName}</a>
-							</td>
->>>>>>> master
+									${codeDetail.codeName} </a></td>
 							<td align="center">${codeDetail.sortSeq}</td>
 							<td align="center"><fmt:formatDate
 									pattern="yyyy-MM-dd HH:mm" value="${codeDetail.regDate}" /></td>
@@ -63,10 +58,8 @@
 			</c:choose>
 		</table>
 	</div>
-	<!-- 메인화면 작업끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-	<!-- 이벤트처리방식 -->
 	<script>
 		var result = "${msg}";
 		if (result === "SUCCESS") {

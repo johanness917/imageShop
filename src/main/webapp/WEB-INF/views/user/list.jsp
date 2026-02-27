@@ -16,7 +16,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
-	<!-- 메인화면 작업시작 -->
+
 	<div align="center">
 		<h2>
 			<spring:message code="user.header.list" />
@@ -45,7 +45,6 @@
 					<c:forEach items="${list}" var="member">
 						<tr>
 							<td align="center">${member.userNo}</td>
-<<<<<<< HEAD
 							<td align="center"><a
 								href='/user/read?userNo=${member.userNo}'>${member.userId}</a></td>
 							<td align="left">${member.userPw}</td>
@@ -53,23 +52,14 @@
 							<td align="right">${member.job}</td>
 							<td align="center"><fmt:formatDate
 									pattern="yyyy-MM-dd HH:mm" value="${member.regDate}" /></td>
-=======
-							<td align="center"><a href='/user/read?userNo=${member.userNo}'>${member.userId}</a></td>
-							<td align="left">${member.userPw}</td>
-							<td align="right">${member.userName}</td>
-							<td align="right">${member.job}</td>
-							<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${member.regDate}" /></td>
->>>>>>> master
 						</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 		</table>
 	</div>
-	<!-- 메인화면 작업끝 -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-	<!-- 이벤트처리방식 -->
 	<script>
 		var result = "${msg}";
 		if (result === "SUCCESS") {

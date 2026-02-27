@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD
-=======
 import com.project.common.domain.PageRequest;
->>>>>>> master
 import com.project.domain.Board;
 import com.project.mapper.BoardMapper;
 
@@ -24,47 +21,33 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.register(board);
 	}
 
+	// 게시글 목록 (페이징 적용 버전으로 통합)
 	@Override
-<<<<<<< HEAD
-	public List<Board> list() throws Exception {
-		return mapper.list();
+	public List<Board> list(PageRequest pageRequest) throws Exception {
+		return mapper.list(pageRequest);
 	}
 
-=======
-	public List<Board> list(PageRequest pageRequest) throws Exception {
-		
-		return mapper.list(pageRequest);
-	} 
-	
->>>>>>> master
 	@Override
 	public Board read(Board board) throws Exception {
 		return mapper.read(board);
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> master
 	@Transactional
 	@Override
 	public int modify(Board board) throws Exception {
 		return mapper.modify(board);
 	}
 
+	@Transactional
 	@Override
 	public int remove(Board board) throws Exception {
 		return mapper.remove(board);
-<<<<<<< HEAD
-	} 
-=======
 	}
 
+	// 게시글 전체 건수 반환
 	@Override
-	public int count() throws Exception {
-		return mapper.count();
+	public int count(PageRequest pageRequest) throws Exception {
+		return mapper.count(pageRequest);
 	}
 
-	
->>>>>>> master
 }
