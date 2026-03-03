@@ -26,14 +26,29 @@
 	]]>
 	</select>
 
+	<!-- 상품 수정 처리 -->
+	<update id="modify">
+		UPDATE item SET item_name = #{itemName}, price =
+		#{price}, description = #{description},
+		picture_url = #{pictureUrl}, preview_url = #{previewUrl}
+		WHERE item_id = #{itemId}
+	</update>
+
+	<!-- 상품 삭제 처리 -->
+	<delete id="remove">
+		DELETE FROM item WHERE item_id = #{itemId}
+	</delete>
+
 	<!-- 원본 이미지 표시 -->
 	<select id="getPicture" resultType="String">
-		SELECT picture_url FROM item WHERE item_id = #{itemId}
+		SELECT picture_url FROM item
+		WHERE item_id = #{itemId}
 	</select>
-	
+
 	<!-- 미리보기 이미지 표시 -->
 	<select id="getPreview" resultType="String">
-		SELECT preview_url FROM item WHERE item_id = #{itemId}
+		SELECT preview_url FROM item
+		WHERE item_id = #{itemId}
 	</select>
-	
+
 </mapper>

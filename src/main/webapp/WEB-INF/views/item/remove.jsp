@@ -21,20 +21,20 @@
 
 	<div align="center">
 		<h2>
-			<spring:message code="item.header.modify" />
+			<spring:message code="item.header.remove" />
 		</h2>
-		<form:form modelAttribute="item" action="/item/modify" method="post" enctype="multipart/form-data">
+		<form:form modelAttribute="item" action="/item/remove" method="post" enctype="multipart/form-data">
 			<form:hidden path="itemId" />
 
 			<table>
 				<tr>
 					<td><spring:message code="item.itemName" /></td>
-					<td><form:input path="itemName" /></td>
+					<td><form:input path="itemName" readonly="true"/></td>
 					<td><font color="red"><form:errors path="itemName" /></font></td>
 				</tr>
 				<tr>
 					<td><spring:message code="item.itemPrice" /></td>
-					<td><form:input path="price" />&nbsp;원</td>
+					<td><form:input path="price"  readonly="true"/>&nbsp;원</td>
 					<td><font color="red"><form:errors path="price" /></font></td>
 				</tr>
 				<tr>
@@ -48,17 +48,17 @@
 
 				<tr>
 					<td><spring:message code="item.itemFile" /></td>
-					<td><input type="file" name="picture" /></td>
+					<td><input type="file" name="picture"  readonly="true"/></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td><spring:message code="item.itemPreviewFile" /></td>
-					<td><input type="file" name="preview" /></td>
+					<td><input type="file" name="preview"  readonly="true"/></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td><spring:message code="item.itemDescription" /></td>
-					<td><form:textarea path="description" /></td>
+					<td><form:textarea path="description"  readonly="true"/></td>
 					<td><form:errors path="description" /></td>
 				</tr>
 			</table>
@@ -67,8 +67,8 @@
 
 		<div style="margin-top: 10px;">
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<button type="submit" id="btnModify">
-					<spring:message code="action.modify" />
+				<button type="submit" id="btnRemove">
+					<spring:message code="action.remove" />
 				</button>
 			</sec:authorize>
 
@@ -85,7 +85,7 @@
 			let formObj = $("#item");
 
 			// 등록 버튼 클릭 시 폼 전송
-			$("#btnModify").on("click", function() {
+			$("#btnRemove").on("click", function() {
 				formObj.submit();
 			});
 

@@ -77,7 +77,7 @@
 							</sec:authorize>
 							<sec:authorize access="hasRole('ROLE_MEMBER')">
 								<td align="center">
-								<a href="item/read?itemId=${item.itemId}">
+								<a href="/item/read?itemId=${item.itemId}">
 								<spring:message code="item.read" /></a></td>
 							</sec:authorize>
 						</tr>

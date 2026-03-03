@@ -21,49 +21,45 @@
 
 	<div align="center">
 		<h2>
-			<spring:message code="notice.header.read" />
+			<spring:message code="item.header.read" />
 		</h2>
-
-		<form:form modelAttribute="notice">
-			<form:hidden path="noticeNo" />
+		<form:form modelAttribute="item">
+			<form:hidden path="itemId" />
 			<table>
 				<tr>
-					<td><spring:message code="notice.title" /></td>
-					<td><form:input path="title" readonly="true" /></td>
-					<td><font color="red"><form:errors path="title" /></font></td>
+					<td><spring:message code="item.itemName" /></td>
+					<td><form:input path="itemName" readonly="true" /></td>
+					<td><font color="red"><form:errors path="itemName" /></font></td>
 				</tr>
 				<tr>
-					<td><spring:message code="notice.content" /></td>
-					<td><form:textarea path="content" readonly="true" /></td>
-					<td><font color="red"><form:errors path="content" /></font></td>
+					<td><spring:message code="item.itemPrice" /></td>
+					<td><form:input path="price" readonly="true" />&nbsp;원</td>
+					<td><font color="red"><form:errors path="price" /></font></td>
+				</tr>
+				<tr>
+					<td><spring:message code="item.picture" /></td>
+					<td><img src="/item/picture?itemId=${item.itemId}" width="210"></td>
+				</tr>
+				<tr>
+					<td><spring:message code="item.preview" /></td>
+					<td><img src="/item/display?itemId=${item.itemId}" width="210"></td>
+				</tr>
+
+				<tr>
+					<td><spring:message code="item.itemDescription" /></td>
+					<td><form:textarea path="description" /></td>
+					<td><form:errors path="description" /></td>
 				</tr>
 			</table>
-
 		</form:form>
 
+
 		<div style="margin-top: 10px;">
-			<sec:authentication property="principal" var="principal" />
+			<button type="submit" id="btnModify">
+				<spring:message code="action.modify" />
+			</button>
 
-			<%-- 관리자 권한 --%>
-			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<button type="button" id="btnEdit">
-					<spring:message code="action.edit" />
-				</button>
-				<button type="button" id="btnRemove">
-					<spring:message code="action.remove" />
-				</button>
-			</sec:authorize>
-
-			<%-- 일반 회원이고 작성자 본인일 때 --%>
-			<sec:authorize access="hasRole('ROLE_MEMBER')">
-				<c:if test="${principal.username eq board.writer}">
-					<button type="button" id="btnEdit">
-						<spring:message code="action.edit" />
-					</button>
-				</c:if>
-			</sec:authorize>
-
-			<button type="button" id="btnList">
+			<button type="submit" id="btnList">
 				<spring:message code="action.list" />
 			</button>
 		</div>
@@ -73,18 +69,11 @@
 
 	<script>
 		$(document).ready(function() {
-			var formObj = $("#notice");
-			console.log(formObj);
-			$("#btnEdit").on("click", function() {
-				let noticeNo = $("#noticeNo").val();
-				self.location = "/notice/modify?noticeNo=" + noticeNo;
-			});
-			$("#btnRemove").on("click", function() {
-				let noticeNo = $("#noticeNo").val();
-				self.location = "/notice/remove?noticeNo=" + noticeNo;
-			});
+			let formObj = $("#item");
+
+			// 목록 버튼 클릭 시 1페이지로 이동 (페이징 파라미터 포함)
 			$("#btnList").on("click", function() {
-				self.location = "/notice/list"
+				self.location = "/item/list";
 			});
 		});
 	</script>
