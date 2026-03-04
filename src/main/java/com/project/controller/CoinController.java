@@ -1,7 +1,5 @@
 package com.project.controller;
 
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -68,8 +66,18 @@ public class CoinController {
 		CustomUser customUser = (CustomUser) authentication.getPrincipal();
 		Member member = customUser.getMember();
 		int userNo = member.getUserNo();
-		
+
 		model.addAttribute("list", service.list(userNo));
+	}
+
+	// 사용자 구매 내역 보기 요청을 처리한다.
+	@GetMapping("/listPay")
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	public void listPayHistory(Model model, Authentication authentication) throws Exception {
+		CustomUser customUser = (CustomUser) authentication.getPrincipal();
+		Member member = customUser.getMember();
+
+		model.addAttribute("list", service.listPayHistory(member));
 	}
 
 	// 코인 충전 성공 페이지
@@ -77,4 +85,12 @@ public class CoinController {
 	public String success() throws Exception {
 		return "coin/success";
 	}
+
+	// 코인 부족 예외 처리
+	@GetMapping("/notEnoughCoin")
+	@PreAuthorize("hasRole('ROLE_MEMBER')")
+	public void notEnoughCoin(Model model) throws Exception {
+
+	}
+
 }

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
@@ -23,7 +22,6 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -42,17 +40,17 @@ public class ItemController {
 	private ItemService itemService;
 
 	// 업무로직을 처리할 서비스 객체를 필드로 선언한다.
+	// 회원정보 관리서비스
 	@Autowired
 	private MemberService memberService;
-	// 회원정보 관리서비스
+	// 사용자 구매 비지니스 서비스
 	@Autowired
 	private UserItemService userItemService;
 
-	// 사용자 구매 비지니스 서비스
+	// 메시지를 처리할 MessageSource를 필드로 선언한다.
 	@Autowired
 	private MessageSource messageSource;
 
-	// 메시지를 처리할 MessageSource를 필드로 선언한다.
 	@Value("${upload.path}")
 	private String uploadPath;
 
@@ -179,30 +177,49 @@ public class ItemController {
 
 	// 상품 상세 페이지
 	@GetMapping("/read")
-	public String read(Item item, Model model) throws Exception {
-		Item _item = itemService.read(item);
-		model.addAttribute("item", _item);
+	public String read(Item _item, Model model) throws Exception {
+		Item item = itemService.read(_item);
+		if (item != null) {
+			model.addAttribute("item", item);
+		} else {
+			throw new Exception("에러가 발생했습니다.");
+		}
 		return "item/read";
 	}
-	/*
+
 	// 상품 구매 요청을 처리한다.
 	@PostMapping("/buy")
 	@PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
-	public String buy(int itemid, RedirectAttributes rttr, Authentication authentication) throws Exception {
+	public String buy(Item item, RedirectAttributes rttr, Authentication authentication) throws Exception {
 		// 인증된 사용자 정보를 가져오고, coin
 		CustomUser customUser = (CustomUser) authentication.getPrincipal();
 		Member member = customUser.getMember();
-		int userNo = member.getUserNo();
-		member.setCoin(memberService.getCoin(userNo));
 
-		Item item = itemService.read(itemId);
-		userItemService.register(member, item);
-		String message = messageSource.getMessage("item.purchaseComplete", null, Locale.KOREAN);
-		rttr.addFlashAttribute("msg", message);
+		// 해당되는 회원코인정보를 가져와서 저장한다.
+		member.setCoin(memberService.getCoin(member));
 
+		// 상품의 대한 정보를 가져온다.
+		Item _item = itemService.read(item);
+
+		// 장바구니 생성
+		int count = userItemService.register(member, item);
+
+		// String message = messageSource.getMessage("item.purchaseComplete", null,
+		// Locale.KOREAN);
+		if (count != 0) {
+			rttr.addFlashAttribute("msg", "구매가 완료되었습니다.");
+		} else {
+			rttr.addFlashAttribute("msg", "구매를 실패했습니다.");
+		}
 		return "redirect:/item/success";
 	}
-	*/
+
+	// 상품 구매 성공 페이지를 표시한다.
+	@GetMapping("/success")
+	public String success() throws Exception {
+		return "item/success";
+	}
+
 	// 미리보기 이미지 표시
 	@ResponseBody
 	@RequestMapping("/display")
