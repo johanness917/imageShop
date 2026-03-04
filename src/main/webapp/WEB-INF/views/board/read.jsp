@@ -79,6 +79,8 @@
 				<spring:message code="action.list" />
 			</button>
 		</div>
+
+		<jsp:include page="replyRead.jsp" />
 	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />

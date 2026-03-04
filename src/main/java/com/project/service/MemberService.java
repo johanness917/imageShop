@@ -19,5 +19,7 @@ public interface MemberService {
 	public int countAll() throws Exception;
 
 	public void setupAdmin(Member member) throws Exception;
+	//코인정보 반환한다.
+	public int getCoin(Member member) throws Exception;
 
 }

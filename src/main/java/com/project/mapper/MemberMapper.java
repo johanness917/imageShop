@@ -37,4 +37,6 @@ public interface MemberMapper {
 	// 전체 회원 수 조회
 	public int countAll() throws Exception;
 
+	public int getCoin(Member member) throws Exception;
+
 }

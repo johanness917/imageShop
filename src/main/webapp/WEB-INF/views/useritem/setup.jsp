@@ -22,8 +22,7 @@
 		<h2>
 			<spring:message code="user.header.register" />
 		</h2>
-		<form:form modelAttribute="member" action="/user/register"
-			method="post">
+		<form:form modelAttribute="member" action="/user/setup" method="post">
 			<table class="user_table">
 				<tr>
 					<td><spring:message code="user.userId" /></td>
@@ -40,12 +39,6 @@
 					<td><form:input path="userName" /></td>
 					<td><font color="red"><form:errors path="userName" /></font></td>
 				</tr>
-				<tr>
-					<td><spring:message code="user.job" /></td>
-					<td><form:select path="job" items="${jobList}"
-							itemValue="value" itemLabel="label" /></td>
-					<td><font color="red"><form:errors path="job" /></font></td>
-				</tr>
 			</table>
 		</form:form>
 
@@ -53,11 +46,9 @@
 			<button type="submit" id="btnRegister">
 				<spring:message code="action.register" />
 			</button>
-			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<button type="submit" id="btnList">
-					<spring:message code="action.list" />
-				</button>
-			</sec:authorize>
+			<button type="submit" id="btnList">
+				<spring:message code="action.list" />
+			</button>
 		</div>
 	</div>
 

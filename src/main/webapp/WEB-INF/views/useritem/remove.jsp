@@ -21,19 +21,20 @@
 
 	<div align="center">
 		<h2>
-			<spring:message code="item.header.read" />
+			<spring:message code="item.header.remove" />
 		</h2>
-		<form:form modelAttribute="item" action="/item/buy" method="post">
+		<form:form modelAttribute="item" action="/item/remove" method="post" enctype="multipart/form-data">
 			<form:hidden path="itemId" />
+
 			<table>
 				<tr>
 					<td><spring:message code="item.itemName" /></td>
-					<td><form:input path="itemName" readonly="true" /></td>
+					<td><form:input path="itemName" readonly="true"/></td>
 					<td><font color="red"><form:errors path="itemName" /></font></td>
 				</tr>
 				<tr>
 					<td><spring:message code="item.itemPrice" /></td>
-					<td><form:input path="price" readonly="true" />&nbsp;원</td>
+					<td><form:input path="price"  readonly="true"/>&nbsp;원</td>
 					<td><font color="red"><form:errors path="price" /></font></td>
 				</tr>
 				<tr>
@@ -46,8 +47,18 @@
 				</tr>
 
 				<tr>
+					<td><spring:message code="item.itemFile" /></td>
+					<td><input type="file" name="picture"  readonly="true"/></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><spring:message code="item.itemPreviewFile" /></td>
+					<td><input type="file" name="preview"  readonly="true"/></td>
+					<td></td>
+				</tr>
+				<tr>
 					<td><spring:message code="item.itemDescription" /></td>
-					<td><form:textarea path="description" readonly="true" /></td>
+					<td><form:textarea path="description"  readonly="true"/></td>
 					<td><form:errors path="description" /></td>
 				</tr>
 			</table>
@@ -55,17 +66,9 @@
 
 
 		<div style="margin-top: 10px;">
-			<%-- 일반 멤버(MEMBER) 권한일 때만 구매 버튼 표시 --%>
-			<sec:authorize access="hasRole('ROLE_MEMBER')">
-				<button type="submit" id="btnBuy">
-					<spring:message code="action.buy" />
-				</button>
-			</sec:authorize>
-
-			<%-- 관리자(ADMIN) 권한일 때만 수정 버튼 표시 --%>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<button type="submit" id="btnModify">
-					<spring:message code="action.modify" />
+				<button type="submit" id="btnRemove">
+					<spring:message code="action.remove" />
 				</button>
 			</sec:authorize>
 
@@ -81,18 +84,12 @@
 		$(document).ready(function() {
 			let formObj = $("#item");
 
-			// 구매 버튼 (ROLE_MEMBER 전용)
-			$("#btnBuy").on("click", function() {
+			// 등록 버튼 클릭 시 폼 전송
+			$("#btnRemove").on("click", function() {
 				formObj.submit();
 			});
 
-			// 수정 버튼 (ROLE_ADMIN 전용)
-			$("#btnModify").on("click", function() {
-				let itemId = $("#itemId").val();
-				self.location = "/item/modify?itemId=" + itemId;
-			});
-
-			// 목록 버튼
+			// 목록 버튼 클릭 시 1페이지로 이동 (페이징 파라미터 포함)
 			$("#btnList").on("click", function() {
 				self.location = "/item/list";
 			});
